@@ -1,5 +1,5 @@
 
-const GITHUB_ARTICLES_URL = 'https://raw.githubusercontent.com/ton-utilisateur/portfolio-livre-seo/main/articles/';
+const GITHUB_ARTICLES_URL = 'https://raw.githubusercontent.com/juanitoroz/portfolio-livre-seo/main/articles/';
 const FILES = [
   'article1.txt',
   'article2.txt',
