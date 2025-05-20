@@ -1,9 +1,11 @@
 
 const GITHUB_ARTICLES_URL = 'https://raw.githubusercontent.com/juanitoroz/portfolio-livre-seo/main/articles/';
 const FILES = [
+  'article1.txt',
+  'article2.txt',
+  'article3.txt',
   'husky.txt',
-  't-es.txt',
-  'article3.txt'
+  't-es.txt'
 ];
 
 let articles = [];
