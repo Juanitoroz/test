@@ -4,8 +4,7 @@ const FILES = [
   'article1.txt',
   'article2.txt',
   'article3.txt',
-  'husky.txt',
-  't-es.txt'
+  't-es.txt',
 ];
 
 let articles = [];
