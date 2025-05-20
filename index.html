@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio SEO - Livre Animé</title>
+  <link rel="stylesheet" href="css/turn.css" />
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'IM Fell English SC', serif;
+      background: #f0e6d6 url('https://www.transparenttextures.com/patterns/aged-paper.png');
+      color: #3e2f1c;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px 20px 10px;
+      background-color: #dcc9a4;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    .book-viewport {
+      width: 90%;
+      margin: 30px auto;
+    }
+
+    #book {
+      width: 100%;
+      height: 600px;
+      margin: auto;
+    }
+
+    .page {
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid #a37b4e;
+      padding: 40px;
+      box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+      font-size: 1.1rem;
+    }
+
+    .page h2 {
+      margin-top: 0;
+      font-size: 1.5rem;
+      border-bottom: 1px solid #a37b4e;
+      padding-bottom: 5px;
+    }
+
+    .controls {
+      text-align: center;
+      margin: 20px;
+    }
+
+    input[type="file"] {
+      font-family: 'IM Fell English SC', serif;
+      padding: 10px;
+    }
+
+    button {
+      font-family: 'IM Fell English SC', serif;
+      padding: 10px 20px;
+      margin: 5px;
+      background: #5a3b1d;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Mon Grimoire SEO</h1>
+  </header>
+
+  <div class="book-viewport">
+    <div id="book">
+      <div class="page"><h2>Bienvenue</h2><p>Charge tes fichiers texte pour découvrir leur magie SEO dans un vrai livre !</p></div>
+      <div class="page"><h2>Avertissement</h2><p>Chaque fichier .txt que tu ajoutes apparaîtra comme une double page dans ce grimoire numérique.</p></div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <input type="file" id="fileInput" multiple accept=".txt" />
+    <button onclick="$('#book').turn('previous')">← Page précédente</button>
+    <button onclick="$('#book').turn('next')">Page suivante →</button>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/turn.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#book').turn({
+        width: 960,
+        height: 600,
+        autoCenter: true
+      });
+
+      document.getElementById('fileInput').addEventListener('change', function(event) {
+        const files = event.target.files;
+        Array.from(files).forEach(file => {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            const content = e.target.result;
+            const title = file.name.replace('.txt', '');
+            const page1 = document.createElement('div');
+            const page2 = document.createElement('div');
+            page1.className = 'page';
+            page2.className = 'page';
+            page1.innerHTML = '<h2>' + title + '</h2><p>' + content.substring(0, content.length / 2) + '</p>';
+            page2.innerHTML = '<h2>' + title + '</h2><p>' + content.substring(content.length / 2) + '</p>';
+            $('#book').turn('addPage', page1);
+            $('#book').turn('addPage', page2);
+          };
+          reader.readAsText(file);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
